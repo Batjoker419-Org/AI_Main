@@ -1,0 +1,27 @@
+name: Auto-merge Windsurf PRs
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [ main ]
+    paths:
+      - '**/.gitignore'
+      - 'windsurf/**'
+
+jobs:
+  approve_and_merge:
+    runs-on: ubuntu-latest
+    if: >
+      github.actor == 'windsurf[bot]' &&
+      startsWith(github.event.pull_request.head.ref, 'windsurf/')
+    steps:
+      - name: Auto-approve Windsurf PR
+        uses: hmarr/auto-approve-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Auto-merge on green
+        uses: pascalgn/automerge-action@v0.14.3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: squash
