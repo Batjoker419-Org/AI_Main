@@ -1,0 +1,12 @@
+[submodule "neural-cluster"]
+	path = neural-cluster
+	url = C:/Users/pangl/OneDrive/Documents/GitHub/neural-cluster
+[submodule "robotplatoon"]
+	path = robotplatoon
+	url = C:/Users/pangl/OneDrive/Documents/GitHub/robotplatoon
+[submodule "BatjokerBrain"]
+	path = BatjokerBrain
+	url = ./BatjokerBrain
+[submodule "fintechwebsiteproject"]
+	path = fintechwebsiteproject
+	url = ./fintechwebsiteproject
