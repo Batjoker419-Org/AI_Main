@@ -1,0 +1,33 @@
+name: Rebuild Batjoker Environment
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 1 * *'
+
+jobs:
+  rebuild:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: false
+          auto-update-conda: true
+
+      - name: Rebuild Batjoker Env
+        run: conda env create --file batjoker-env.yml --force
+
+      - name: Verify Activation
+        shell: bash
+        run: |
+          source "C:\Users\pangl\anaconda3/etc/profile.d/conda.sh"
+          conda activate batjoker
+          conda list
+
+      - name: Success Notification
+        run: echo "🃏 Batjoker environment rebuilt successfully!"
